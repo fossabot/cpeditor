@@ -37,6 +37,8 @@
 #include <QTemporaryDir>
 #include <generated/version.hpp>
 
+// ci test
+
 QT_BEGIN_NAMESPACE
 namespace Ui
 {
