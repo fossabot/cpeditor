@@ -25,7 +25,7 @@ jobs:
     - name: Install Qt
       uses: ouuan/install-qt-action@v2.4.0
       with:
-        variableonly: steps.cache-qt.outputs.cache-hit
+        variableonly: ${{ steps.cache-qt.outputs.cache-hit }}
         version: ${{ matrix.qt_version }}
     
     - name: get submodules
