@@ -1,3 +1,5 @@
+name: "CI: Build Test"
+
 on: [push, pull_request]
 
 env:
@@ -16,23 +18,23 @@ jobs:
         qt_version: [5.12.7, 5.14.1]
         config:
         - {
-            name: "Windows Latest MSVC", artifact: "Windows-MSVC.tar.xz",
+            artifact: "Windows-MSVC.tar.xz",
             os: windows-latest,
             cc: "cl", cxx: "cl",
             environment_script: "C:/Program Files (x86)/Microsoft Visual Studio/2019/Enterprise/VC/Auxiliary/Build/vcvars64.bat"
           }
         - {
-            name: "Windows Latest MinGW", artifact: "Windows-MinGW.tar.xz",
+            artifact: "Windows-MinGW.tar.xz",
             os: windows-latest,
             cc: "gcc", cxx: "g++"
           }
         - {
-            name: "Ubuntu Latest GCC", artifact: "Linux.tar.xz",
+            artifact: "Linux.tar.xz",
             os: ubuntu-latest,
             cc: "gcc", cxx: "g++"
           }
         - {
-            name: "macOS Latest Clang", artifact: "macOS.tar.xz",
+            artifact: "macOS.tar.xz",
             os: macos-latest,
             cc: "clang", cxx: "clang++"
           }
