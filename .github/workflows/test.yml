@@ -23,11 +23,19 @@ jobs:
         key: ${{ matrix.platform }}-${{ matrix.qt_version }}-Qt
 
     - name: Install Qt
+      if: steps.cache-qt.outputs.cache-hit != 'true'
       uses: ouuan/install-qt-action@v2.4.0
       with:
-        variableonly: ${{ steps.cache-qt.outputs.cache-hit }}
+        variableonly: true
         version: ${{ matrix.qt_version }}
     
+    - name: Set Variables
+      if: steps.cache-qt.outputs.cache-hit == 'true'
+      uses: ouuan/install-qt-action@v2.4.0
+      with:
+        variableonly: false
+        version: ${{ matrix.qt_version }}
+
     - name: get submodules
       run: git submodule update --init --recursive
 
