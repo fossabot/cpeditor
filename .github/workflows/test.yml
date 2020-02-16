@@ -20,7 +20,7 @@ jobs:
       uses: actions/cache@v1
       with:
         path: Qt
-        key: ${{ matrix.platform }}-${{ matrix.qt_version }}-Qt
+        key: ${{ matrix.platform }}-${{ matrix.qt_version }}-QtCache
 
     - name: Install Qt
       if: steps.cache-qt.outputs.cache-hit != 'true'
