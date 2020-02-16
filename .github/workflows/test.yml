@@ -23,7 +23,7 @@ jobs:
         key: Qt-${{ matrix.platform }}-${{ matrix.qt_version }}
 
     - name: Install Qt
-      uses: ouuan/install-qt-action@v2.4.1
+      uses: ouuan/install-qt-action@ouuan
       with:
         cached: ${{ steps.cache-qt.outputs.cache-hit }}
         version: ${{ matrix.qt_version }}
