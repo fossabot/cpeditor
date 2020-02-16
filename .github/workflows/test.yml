@@ -72,6 +72,7 @@ jobs:
       with:
         cached: ${{ steps.cache-qt.outputs.cache-hit }}
         version: ${{ matrix.config.qt_version }}
+        aqtversion: "==0.7.1"
 
     - name: Download Ninja and CMake
       id: cmake_and_ninja
