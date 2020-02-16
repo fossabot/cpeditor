@@ -26,14 +26,14 @@ jobs:
       if: steps.cache-qt.outputs.cache-hit != 'true'
       uses: ouuan/install-qt-action@v2.4.1
       with:
-        variableonly: false
+        cached: false
         version: ${{ matrix.qt_version }}
     
-    - name: Set Variables
+    - name: Set environment
       if: steps.cache-qt.outputs.cache-hit == 'true'
       uses: ouuan/install-qt-action@v2.4.1
       with:
-        variableonly: true
+        cached: true
         version: ${{ matrix.qt_version }}
 
     - name: get submodules
