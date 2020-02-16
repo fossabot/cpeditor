@@ -31,8 +31,15 @@ jobs:
     - name: get submodules
       run: git submodule update --init --recursive
 
-    - name: cmake
-      run: cmake .
+    - name: Cache build directory
+      uses: actions/cache@v1
+      with:
+        path: ./build
+        key: ${{ matrix.platform }}-${{ matrix.qt_version }}-build
 
-    - name: cmake build
-      run: cmake --build .
+    - name: make
+      run: |
+        mkdir build
+        cd build
+        cmake .. -DCMAKE_BUILD_TYPE=Release
+        cmake --build .
