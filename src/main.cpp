@@ -121,7 +121,7 @@ int main(int argc, char *argv[])
             TOJSON(python);
             TOJSON(number);
             TOJSON(path);
-            if (app.sendMessage("AAAAAAAAAAAAAAAAAAANOLOSTDATA" + QJsonDocument(json).toBinaryData()))
+            if (app.sendMessage("AAAAAAAAAAAAAAAAAAAANOLOSTDATA" + QJsonDocument(json).toBinaryData()))
             {
                 Core::Log::i("Contest/Instance",
                              "This is secondary application. Sending to primary instance the binary data : " +
@@ -175,7 +175,7 @@ int main(int argc, char *argv[])
             TOJSON(java);
             TOJSON(python);
             json["paths"] = QJsonArray::fromStringList(args);
-            if (app.sendMessage("AAAAAAAAAAAAAAAAAAANOLOSTDATA" + QJsonDocument(json).toBinaryData()))
+            if (app.sendMessage("AAAAAAAAAAAAAAAAAAAANOLOSTDATA" + QJsonDocument(json).toBinaryData()))
             {
                 Core::Log::i("main/Normal/Instance",
                              "This is secondary application. Sending to primary instance the data : " +
