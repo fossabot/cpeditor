@@ -18,23 +18,23 @@ jobs:
         qt_version: [5.12.7, 5.14.1]
         config:
         - {
-            artifact: "Windows-MSVC.tar.xz",
+            name: "Windows Latest MSVC with Qt ${qt_version}", artifact: "Windows-MSVC.tar.xz",
             os: windows-latest,
             cc: "cl", cxx: "cl",
             environment_script: "C:/Program Files (x86)/Microsoft Visual Studio/2019/Enterprise/VC/Auxiliary/Build/vcvars64.bat"
           }
         - {
-            artifact: "Windows-MinGW.tar.xz",
+            name: "Windows Latest MinGW with Qt ${qt_version}", artifact: "Windows-MinGW.tar.xz",
             os: windows-latest,
             cc: "gcc", cxx: "g++"
           }
         - {
-            artifact: "Linux.tar.xz",
+            name: "Ubuntu Latest GCC with Qt ${qt_version}", artifact: "Linux.tar.xz",
             os: ubuntu-latest,
             cc: "gcc", cxx: "g++"
           }
         - {
-            artifact: "macOS.tar.xz",
+            name: "macOS Latest Clang with Qt ${qt_version}", artifact: "macOS.tar.xz",
             os: macos-latest,
             cc: "clang", cxx: "clang++"
           }
