@@ -19,7 +19,7 @@ jobs:
       id: cache-qt
       uses: actions/cache@v1
       with:
-        path: ${RUNNER_WORKSPACE}/Qt
+        path: Qt
         key: ${{ matrix.platform }}-${{ matrix.qt_version }}-Qt
 
     - name: Install Qt
@@ -34,7 +34,7 @@ jobs:
     - name: Cache build directory
       uses: actions/cache@v1
       with:
-        path: ./build
+        path: build
         key: ${{ matrix.platform }}-${{ matrix.qt_version }}-build
 
     - name: make
