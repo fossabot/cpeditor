@@ -995,7 +995,7 @@ void AppWindow::onTabContextMenuRequested(const QPoint &pos)
                 args << "-e";
                 args << "end tell";
                 QProcess::startDetached("osascript", args);
-            });
+            })
 #elif defined(Q_OS_WIN)
             menu->addAction("Reveal in Explorer", [filePath] {
                 QStringList args;
