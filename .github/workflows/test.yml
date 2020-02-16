@@ -26,14 +26,14 @@ jobs:
       if: steps.cache-qt.outputs.cache-hit != 'true'
       uses: ouuan/install-qt-action@v2.4.0
       with:
-        variableonly: true
+        variableonly: false
         version: ${{ matrix.qt_version }}
     
     - name: Set Variables
       if: steps.cache-qt.outputs.cache-hit == 'true'
       uses: ouuan/install-qt-action@v2.4.0
       with:
-        variableonly: false
+        variableonly: true
         version: ${{ matrix.qt_version }}
 
     - name: get submodules
@@ -45,7 +45,16 @@ jobs:
         path: build
         key: ${{ matrix.platform }}-${{ matrix.qt_version }}-build
 
-    - name: make
+    - name: make on Windows
+      if: matrix.platform == 'windows-latest'
+      run: |
+        mkdir build
+        cd build
+        cmake ..
+        cmake --build . --config=Release
+
+    - name: make on Linux/Mac
+      if: matrix.platform != 'windows-latest'
       run: |
         mkdir -p build
         cd build
