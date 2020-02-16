@@ -52,7 +52,7 @@ jobs:
         md build -ea 0
         cd build
         cmake ..
-        cmake --build . --config=Release
+        cmake --build . --config Release
 
     - name: make on Linux/Mac
       if: matrix.platform != 'windows-latest'
