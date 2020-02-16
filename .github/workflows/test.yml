@@ -15,26 +15,54 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        qt_version: [5.12.7, 5.14.1]
         config:
         - {
-            name: "Windows Latest MSVC with Qt ${matrix.config.qt_version}", artifact: "Windows-MSVC.tar.xz",
+            name: "MSVC@Windows (Qt 5.12.7)",
+            qt_version: 5.12.7,
             os: windows-latest,
             cc: "cl", cxx: "cl",
             environment_script: "C:/Program Files (x86)/Microsoft Visual Studio/2019/Enterprise/VC/Auxiliary/Build/vcvars64.bat"
           }
         - {
-            name: "Windows Latest MinGW with Qt ${matrix.config.qt_version}", artifact: "Windows-MinGW.tar.xz",
+            name: "MinGW@Windows (Qt 5.12.7)",
+            qt_version: 5.12.7,
             os: windows-latest,
             cc: "gcc", cxx: "g++"
           }
         - {
-            name: "Ubuntu Latest GCC with Qt ${matrix.config.qt_version}", artifact: "Linux.tar.xz",
+            name: "GCC@Ubuntu (Qt 5.12.7)",
+            qt_version: 5.12.7,
             os: ubuntu-latest,
             cc: "gcc", cxx: "g++"
           }
         - {
-            name: "macOS Latest Clang with Qt ${matrix.config.qt_version}", artifact: "macOS.tar.xz",
+            name: "Cl@MacOS (Qt 5.12.7)",
+            qt_version: 5.12.7,
+            os: macos-latest,
+            cc: "clang", cxx: "clang++"
+          }
+        - {
+            name: "MSVC@Windows (Qt 5.14.1)",
+            qt_version: 5.14.1,
+            os: windows-latest,
+            cc: "cl", cxx: "cl",
+            environment_script: "C:/Program Files (x86)/Microsoft Visual Studio/2019/Enterprise/VC/Auxiliary/Build/vcvars64.bat"
+          }
+        - {
+            name: "MinGW@Windows (Qt 5.14.1)",
+            qt_version: 5.14.1,
+            os: windows-latest,
+            cc: "gcc", cxx: "g++"
+          }
+        - {
+            name: "GCC@Ubuntu (Qt 5.14.1)",
+            qt_version: 5.14.1,
+            os: ubuntu-latest,
+            cc: "gcc", cxx: "g++"
+          }
+        - {
+            name: "Cl@MacOS (Qt 5.14.1)",
+            qt_version: 5.14.1,
             os: macos-latest,
             cc: "clang", cxx: "clang++"
           }
@@ -49,13 +77,13 @@ jobs:
       uses: actions/cache@v1
       with:
         path: ../Qt
-        key: Qt-${{ matrix.config.os }}-${{ matrix.qt_version }}
+        key: Qt-${{ matrix.config.os }}-${{ matrix.config.qt_version }}
 
     - name: Install Qt
       uses: ouuan/install-qt-action@ouuan
       with:
         cached: ${{ steps.cache-qt.outputs.cache-hit }}
-        version: ${{ matrix.qt_version }}
+        version: ${{ matrix.config.qt_version }}
 
     - name: Download Ninja and CMake
       id: cmake_and_ninja
