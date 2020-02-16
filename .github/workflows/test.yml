@@ -40,6 +40,7 @@ jobs:
       run: git submodule update --init --recursive
 
     - name: Cache build directory
+      id: cache-build
       uses: actions/cache@v1
       with:
         path: build
