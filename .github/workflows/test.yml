@@ -23,17 +23,9 @@ jobs:
         key: Qt-${{ matrix.platform }}-${{ matrix.qt_version }}
 
     - name: Install Qt
-      if: steps.cache-qt.outputs.cache-hit != 'true'
       uses: ouuan/install-qt-action@v2.4.1
       with:
-        cached: false
-        version: ${{ matrix.qt_version }}
-    
-    - name: Set environment
-      if: steps.cache-qt.outputs.cache-hit == 'true'
-      uses: ouuan/install-qt-action@v2.4.1
-      with:
-        cached: true
+        cached: ${{ steps.cache-qt.outputs.cache-hit }}
         version: ${{ matrix.qt_version }}
 
     - name: get submodules
