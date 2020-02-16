@@ -13,24 +13,24 @@ jobs:
     runs-on: ${{ matrix.platform }}
 
     steps:
-    - uses: actions/checkout@v2
-
-    - name: Cache Qt
-      id: cache-qt
+    - name: Cache
+      id: cache
       uses: actions/cache@v1
       with:
-        path: Qt
-        key: ${{ matrix.platform }}-${{ matrix.qt_version }}-Qt
+        path: .
+        key: ${{ matrix.platform }}-${{ matrix.qt_version }}
+
+    - uses: actions/checkout@v2
 
     - name: Install Qt
-      if: steps.cache-qt.outputs.cache-hit != 'true'
+      if: steps.cache.outputs.cache-hit != 'true'
       uses: ouuan/install-qt-action@v2.4.0
       with:
         variableonly: false
         version: ${{ matrix.qt_version }}
     
     - name: Set Variables
-      if: steps.cache-qt.outputs.cache-hit == 'true'
+      if: steps.cache.outputs.cache-hit == 'true'
       uses: ouuan/install-qt-action@v2.4.0
       with:
         variableonly: true
@@ -38,13 +38,6 @@ jobs:
 
     - name: get submodules
       run: git submodule update --init --recursive
-
-    - name: Cache build directory
-      id: cache-build
-      uses: actions/cache@v1
-      with:
-        path: build
-        key: ${{ matrix.platform }}-${{ matrix.qt_version }}-build
 
     - name: make on Windows
       if: matrix.platform == 'windows-latest'
