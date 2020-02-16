@@ -48,7 +48,7 @@ jobs:
     - name: make on Windows
       if: matrix.platform == 'windows-latest'
       run: |
-        mkdir build
+        md build -ea 0
         cd build
         cmake ..
         cmake --build . --config=Release
