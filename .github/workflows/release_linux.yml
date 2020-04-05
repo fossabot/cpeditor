@@ -33,7 +33,7 @@ jobs:
     - name: Get the version
       id: get_version
       run: |
-        VERSION = ${GITHUB_REF/refs\/tags\//}
+        VERSION=${GITHUB_REF/refs\/tags\//}
         echo ::set-output name=VERSION::$VERSION
         read STABLE_VERSION < .ci/STABLE_VERSION
         if [ "${VERSION:0:${#STABLE_VERSION}}" == "$STABLE_VERSION" ]; then

@@ -17,7 +17,7 @@ jobs:
     - name: Check beta
       id: check_beta
       run: |
-        VERSION = ${GITHUB_REF/refs\/tags\//}
+        VERSION=${GITHUB_REF/refs\/tags\//}
         read STABLE_VERSION < .ci/STABLE_VERSION
         if [ "${VERSION:0:${#STABLE_VERSION}}" == "$STABLE_VERSION" ]; then
           echo ::set-output name=ISSTABLE::true
