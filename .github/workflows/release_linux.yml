@@ -33,9 +33,10 @@ jobs:
     - name: Get the version
       id: get_version
       run: |
-        echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\//}
+        VERSION = ${GITHUB_REF/refs\/tags\//}
+        echo ::set-output name=VERSION::$VERSION
         read STABLE_VERSION < .ci/STABLE_VERSION
-        if [ "${GITHUB_REF:0:${#STABLE_VERSION}}" == "$STABLE_VERSION" ]; then
+        if [ "${VERSION:0:${#STABLE_VERSION}}" == "$STABLE_VERSION" ]; then
           echo ::set-output name=ISBETA::false
         else
           echo ::set-output name=ISBETA::true
